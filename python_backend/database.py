@@ -17,9 +17,6 @@ def select_work(cursor:cursor, project_id: int):
     extract(day FROM age(expected_date_end, expected_date_start)) as days_count 
     from work where id_project = {project_id}""")
     result = cursor.fetchall()
-    print('\n'*3)
-    print(f'{result = }')
-    print('\n'*3)
     return result
 
 def main():

@@ -28,11 +28,7 @@ async def get_available_material_pie_chart_html(project_id: int):
     available_material = db.select_available_material(cursor, project_id)
     df = pd.DataFrame(available_material, columns=[
         'Material', 'Amount', 'Unit', 'Category'])
-    print('\n'*3)
-    print(f'{df.rtypes = }')
-    print('\n'*3)
     pie_chart = plots_drawing.draw_available_material_pie_chart(df)
-    pie_chart.write_html('pie_chart.html', auto_open=True)
     pie_chart_html = cut_html_tag(pie_chart.to_html())
     return pie_chart_html
 
@@ -43,7 +39,6 @@ async def get_work_gantt_chart(project_id: int):
         'Task', 'Start', 'Finish', 'Complete'])
     df['Complete'] = df['Complete'].astype(float)
     gantt_chart = plots_drawing.draw_work_gantt_chart(df)
-    gantt_chart.write_html('gantt_chart.html', auto_open=True)
     gantt_chart_html = cut_html_tag(gantt_chart.to_html())
     return gantt_chart_html
 
