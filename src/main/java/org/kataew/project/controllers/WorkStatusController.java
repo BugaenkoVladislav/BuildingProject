@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:5173/")
 @Controller
 public class WorkStatusController {
 
@@ -21,10 +21,10 @@ public class WorkStatusController {
         this.workStatusRepository = workStatusRepository;
     }
 
-    @PostMapping("/createWorkStatus")
-    public ResponseEntity<String> createWorkStatus(@RequestBody WorkStatusEntity workStatusEntity) {
+    @PostMapping("/addWorkStatus")
+    public ResponseEntity<String> addWorkStatus(@RequestBody WorkStatusEntity workStatusEntity) {
         workStatusRepository.save(workStatusEntity);
-        return new ResponseEntity<>("Work status created", HttpStatus.OK);
+        return new ResponseEntity<>("Work status addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllWorkStatuses")

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:5173/")
 @Controller
 public class ProviderController {
 
@@ -20,10 +20,10 @@ public class ProviderController {
         this.providerRepository = providerRepository;
     }
 
-    @PostMapping("/createProvider")
-    public ResponseEntity<String> createProvider(@RequestBody ProviderEntity providerEntity) {
+    @PostMapping("/addProvider")
+    public ResponseEntity<String> addProvider(@RequestBody ProviderEntity providerEntity) {
         providerRepository.save(providerEntity);
-        return new ResponseEntity<>("Provider created", HttpStatus.OK);
+        return new ResponseEntity<>("Provider addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllProviders")

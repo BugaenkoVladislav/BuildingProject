@@ -5,7 +5,7 @@ import org.kataew.project.repositories.WorkRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("http://localhost:5173/")
 @RestController
 public class WorkController {
     WorkRepository workEntityRepository;
@@ -16,7 +16,7 @@ public class WorkController {
     @PostMapping("/addWork")
     public ResponseEntity<String> addWork(@RequestBody WorkEntity work){
         workEntityRepository.save(work);
-        return new ResponseEntity<>("addNewWork", HttpStatus.OK);
+        return new ResponseEntity<>("addWork", HttpStatus.OK);
     }
 
 
@@ -32,8 +32,8 @@ public class WorkController {
         }
     }
 
-    @PatchMapping("/editWork/{id}")
-    public  ResponseEntity<String> editUser(@PathVariable Long id,@RequestBody WorkEntity newWork){
+    @PatchMapping("/updateWork/{id}")
+    public  ResponseEntity<String> updateUser(@PathVariable Long id,@RequestBody WorkEntity newWork){
         WorkEntity work  = workEntityRepository.findById(id).get();
         if(work != null){
 

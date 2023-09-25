@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:5173/")
 @RestController
 public class ProjectController {
 
@@ -19,13 +19,13 @@ public class ProjectController {
     }
 
 
-    @PostMapping("/createProject")
-    public ResponseEntity<String> createProject(@RequestBody ProjectEntity projectEntity){
+    @PostMapping("/addProject")
+    public ResponseEntity<String> addProject(@RequestBody ProjectEntity projectEntity){
 
         projectEntityRepository.save(projectEntity);
 
 
-        return new ResponseEntity<>("project created", HttpStatus.OK);
+        return new ResponseEntity<>("project addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllProjects/{projectId}")

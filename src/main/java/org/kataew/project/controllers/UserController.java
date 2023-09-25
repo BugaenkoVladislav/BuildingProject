@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+@CrossOrigin("http://localhost:5173/")
 @RestController
 public class UserController {
     UserEntityRepository userEntityRepository;
@@ -17,12 +18,12 @@ public class UserController {
     }
 
     @PostMapping(path="/signIn",consumes = "application/json")
-    public ResponseEntity<String> signIn(@RequestBody UserEntity user){
+    public ResponseEntity<?> signIn(@RequestBody UserEntity user){
 
         UserEntity checkedUser = userEntityRepository.findByLogin(user.getLogin());
         if(checkedUser != null){
             if(checkedUser.getPassword().equals(user.getPassword())){
-                return new ResponseEntity<>("user is signIn",HttpStatus.OK);
+                return new ResponseEntity<>(checkedUser,HttpStatus.OK);
             }
             else{
                 return new ResponseEntity<>("not correct password",HttpStatus.CONFLICT);
@@ -48,7 +49,7 @@ public class UserController {
 
         userEntityRepository.save(user);
 
-        return new ResponseEntity<>("user created", HttpStatus.CREATED);
+        return new ResponseEntity<>("user add", HttpStatus.OK);
     }
 
 

@@ -7,16 +7,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin("http://localhost:5173/")
 @RestController
 public class ScopeOfWorkController {
     ScopeOfWorkRepository scopeOfWorkEntityRepository;
     ScopeOfWorkController(ScopeOfWorkRepository scopeOfWorkEntityRepository){
         this.scopeOfWorkEntityRepository = scopeOfWorkEntityRepository;
     }
-    @PostMapping("/createScopeOfWork")
-    public ResponseEntity<String> createScopeOfWork(@RequestBody ScopeOfWorkEntity scopeOfWorkEntity) {
+    @PostMapping("/addScopeOfWork")
+    public ResponseEntity<String> addScopeOfWork(@RequestBody ScopeOfWorkEntity scopeOfWorkEntity) {
         scopeOfWorkEntityRepository.save(scopeOfWorkEntity);
-        return new ResponseEntity<>("Scope of work created", HttpStatus.OK);
+        return new ResponseEntity<>("Scope of work addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllScopesOfWork")

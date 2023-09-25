@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:5173/")
 @Controller
 public class MaterialController {
 
@@ -20,10 +20,10 @@ public class MaterialController {
         this.materialRepository = materialRepository;
     }
 
-    @PostMapping("/createMaterial")
-    public ResponseEntity<String> createMaterial(@RequestBody MaterialEntity materialEntity) {
+    @PostMapping("/addMaterial")
+    public ResponseEntity<String> addMaterial(@RequestBody MaterialEntity materialEntity) {
         materialRepository.save(materialEntity);
-        return new ResponseEntity<>("Material created", HttpStatus.OK);
+        return new ResponseEntity<>("Material addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllMaterials")

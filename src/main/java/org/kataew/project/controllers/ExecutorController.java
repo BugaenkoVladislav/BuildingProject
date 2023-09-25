@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("http://localhost:5173/")
 @RestController
 public class ExecutorController {
     ExecutorRepository executorEntityRepository;
@@ -20,13 +20,13 @@ public class ExecutorController {
     public Iterable<ExecutorEntity> getAllExecutors(){
         return executorEntityRepository.findAll();
     }
-    @PostMapping("/addNewExecutor")
+    @PostMapping("/addExecutor")
     public ResponseEntity<String> addExecutor(@RequestBody ExecutorEntity executorEntity){
         executorEntityRepository.save(executorEntity);
         return new ResponseEntity<>("executor added", HttpStatus.OK);
     }
     @DeleteMapping("/deleteExecutor/{id}")
-    public ResponseEntity<String> deleteExecutroe(@PathVariable long id){
+    public ResponseEntity<String> deleteExecutor(@PathVariable long id){
         if(executorEntityRepository.findById(id).isEmpty()){
             return new ResponseEntity<>("Not found by Id",HttpStatus.NOT_FOUND);
         }
@@ -36,7 +36,7 @@ public class ExecutorController {
         }
 
     }
-    @PatchMapping("/editExecutor")
+    @PatchMapping("/updateExecutor")
     public ResponseEntity<?> updateScopeOfWork(@RequestBody ExecutorEntity executorEntity) {
         if (executorEntityRepository.existsById(executorEntity.getIdExecutor())) {
             executorEntityRepository.save(executorEntity);
