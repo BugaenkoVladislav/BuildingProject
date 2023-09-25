@@ -36,7 +36,7 @@ public class ExecutorController {
         }
 
     }
-    @PatchMapping("/editExecutor")
+    @PatchMapping("/updateExecutor")
     public ResponseEntity<?> updateScopeOfWork(@RequestBody ExecutorEntity executorEntity) {
         if (executorEntityRepository.existsById(executorEntity.getIdExecutor())) {
             executorEntityRepository.save(executorEntity);

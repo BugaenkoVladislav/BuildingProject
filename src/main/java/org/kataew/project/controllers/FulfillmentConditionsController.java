@@ -23,10 +23,10 @@ public class FulfillmentConditionsController {
         this.fulfillmentConditionsRepository = fulfillmentConditionsRepository;
     }
 
-    @PostMapping("/createFulfillmentCondition")
-    public ResponseEntity<String> createFulfillmentCondition(@RequestBody FulfillmentConditionsEntity fulfillmentConditions) {
+    @PostMapping("/addFulfillmentCondition")
+    public ResponseEntity<String> addFulfillmentCondition(@RequestBody FulfillmentConditionsEntity fulfillmentConditions) {
         fulfillmentConditionsRepository.save(fulfillmentConditions);
-        return new ResponseEntity<>("Fulfillment conditions created", HttpStatus.OK);
+        return new ResponseEntity<>("Fulfillment conditions addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllFulfillmentConditions/{idWork}")

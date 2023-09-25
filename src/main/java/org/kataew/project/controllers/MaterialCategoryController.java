@@ -19,10 +19,10 @@ public class MaterialCategoryController {
         this.materialCategoryRepository = materialCategoryRepository;
     }
 
-    @PostMapping("/createMaterialCategory")
-    public ResponseEntity<String> createMaterialCategory(@RequestBody MaterialCategoryEntity materialCategoryEntity) {
+    @PostMapping("/addMaterialCategory")
+    public ResponseEntity<String> addMaterialCategory(@RequestBody MaterialCategoryEntity materialCategoryEntity) {
         materialCategoryRepository.save(materialCategoryEntity);
-        return new ResponseEntity<>("Material category created", HttpStatus.OK);
+        return new ResponseEntity<>("Material category addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllMaterialCategories")

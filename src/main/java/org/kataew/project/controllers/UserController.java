@@ -49,7 +49,7 @@ public class UserController {
 
         userEntityRepository.save(user);
 
-        return new ResponseEntity<>("user created", HttpStatus.CREATED);
+        return new ResponseEntity<>("user add", HttpStatus.OK);
     }
 
 

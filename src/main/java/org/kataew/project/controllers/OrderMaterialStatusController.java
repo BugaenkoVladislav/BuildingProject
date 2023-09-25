@@ -20,10 +20,10 @@ public class OrderMaterialStatusController {
         this.orderMaterialStatusRepository = orderMaterialStatusRepository;
     }
 
-    @PostMapping("/createOrderMaterialStatus")
-    public ResponseEntity<String> createOrderMaterialStatus(@RequestBody OrderMaterialStatusEntity orderMaterialStatusEntity) {
+    @PostMapping("/addOrderMaterialStatus")
+    public ResponseEntity<String> addOrderMaterialStatus(@RequestBody OrderMaterialStatusEntity orderMaterialStatusEntity) {
         orderMaterialStatusRepository.save(orderMaterialStatusEntity);
-        return new ResponseEntity<>("Order material status created", HttpStatus.OK);
+        return new ResponseEntity<>("Order material status addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllOrderMaterialStatuses")

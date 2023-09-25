@@ -32,8 +32,8 @@ public class WorkController {
         }
     }
 
-    @PatchMapping("/editWork/{id}")
-    public  ResponseEntity<String> editUser(@PathVariable Long id,@RequestBody WorkEntity newWork){
+    @PatchMapping("/updateWork/{id}")
+    public  ResponseEntity<String> updateUser(@PathVariable Long id,@RequestBody WorkEntity newWork){
         WorkEntity work  = workEntityRepository.findById(id).get();
         if(work != null){
 

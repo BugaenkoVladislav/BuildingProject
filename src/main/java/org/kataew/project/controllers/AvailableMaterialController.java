@@ -21,10 +21,10 @@ public class AvailableMaterialController {
         this.availableMaterialRepository = availableMaterialRepository;
     }
 
-    @PostMapping("/createAvailableMaterial")
-    public ResponseEntity<String> createAvailableMaterial(@RequestBody AvailableMaterialEntity availableMaterialEntity) {
+    @PostMapping("/addAvailableMaterial")
+    public ResponseEntity<String> addAvailableMaterial(@RequestBody AvailableMaterialEntity availableMaterialEntity) {
         availableMaterialRepository.save(availableMaterialEntity);
-        return new ResponseEntity<>("Available material created", HttpStatus.OK);
+        return new ResponseEntity<>("Available material addd", HttpStatus.OK);
     }
 
     @GetMapping("/getAllAvailableMaterials/{projectId}")
