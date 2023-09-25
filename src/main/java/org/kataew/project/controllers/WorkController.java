@@ -16,7 +16,7 @@ public class WorkController {
     @PostMapping("/addWork")
     public ResponseEntity<String> addWork(@RequestBody WorkEntity work){
         workEntityRepository.save(work);
-        return new ResponseEntity<>("addNewWork", HttpStatus.OK);
+        return new ResponseEntity<>("addWork", HttpStatus.OK);
     }
 
 

@@ -20,13 +20,13 @@ public class ExecutorController {
     public Iterable<ExecutorEntity> getAllExecutors(){
         return executorEntityRepository.findAll();
     }
-    @PostMapping("/addNewExecutor")
+    @PostMapping("/addExecutor")
     public ResponseEntity<String> addExecutor(@RequestBody ExecutorEntity executorEntity){
         executorEntityRepository.save(executorEntity);
         return new ResponseEntity<>("executor added", HttpStatus.OK);
     }
     @DeleteMapping("/deleteExecutor/{id}")
-    public ResponseEntity<String> deleteExecutroe(@PathVariable long id){
+    public ResponseEntity<String> deleteExecutor(@PathVariable long id){
         if(executorEntityRepository.findById(id).isEmpty()){
             return new ResponseEntity<>("Not found by Id",HttpStatus.NOT_FOUND);
         }
