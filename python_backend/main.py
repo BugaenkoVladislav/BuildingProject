@@ -27,7 +27,7 @@ def cut_html_tag(html: str) -> str:
 async def get_available_material_pie_chart_html(project_id: int):
     available_material = db.select_available_material(cursor, project_id)
     df = pd.DataFrame(available_material, columns=[
-        'Material', 'Amount', 'Unit', 'Category'])
+        'Материал', 'Количество', 'Единицы измерения', 'Категория'])
     pie_chart = plots_drawing.draw_available_material_pie_chart(df)
     pie_chart_html = cut_html_tag(pie_chart.to_html())
     return pie_chart_html
