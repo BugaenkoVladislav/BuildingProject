@@ -5,7 +5,7 @@ import org.kataew.project.repositories.WorkRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin("http://localhost:5173/")
 @RestController
 public class WorkController {
     WorkRepository workEntityRepository;
