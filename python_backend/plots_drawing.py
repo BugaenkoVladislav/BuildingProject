@@ -15,20 +15,6 @@ def draw_available_material_pie_chart(df:pd.DataFrame):
 def draw_work_gantt_chart(df:pd.DataFrame):
     fig = ff.create_gantt(
         df,
-        colors='Viridis',
-        index_col='Complete',
-        show_colorbar=True)
-
-    return fig
-
-def main():
-    df = pd.DataFrame([
-                   ['Run', '2010-01-01', '2011-02-02', 10],
-                   ['Fast', '2011-01-01', '2012-06-05', 55],
-                   ['Eat', '2012-01-05', '2013-07-05', 'hi']],
-                  columns=['Task', 'Start', 'Finish', 'Complete'])
-    fig = ff.create_gantt(
-        df,
         colors='Blues',
         index_col='Complete',
         show_colorbar=True,
@@ -36,6 +22,17 @@ def main():
         showgrid_x=True,
         showgrid_y=True
     )
+
+    return fig
+
+def main():
+    df = pd.DataFrame([
+                   ['Run', '2010-01-01', '2011-02-02', 10],
+                   ['Fast', '2011-01-01', '2012-06-05', 55],
+                   ['Eat', '2012-01-05', '2013-07-05', 5]],
+                  columns=['Task', 'Start', 'Finish', 'Complete'])
+
+    fig = draw_work_gantt_chart(df)
     fig.write_html('first_figure.html', auto_open=True)
 
 if __name__ == "__main__":

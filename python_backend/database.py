@@ -13,15 +13,13 @@ def select_available_material(cursor:cursor, project_id: int):
 
 def select_work(cursor:cursor, project_id: int):
     cursor.execute(f"""
-    select w.expected_date_start as start_date, w.expected_date_end as end_date,
-     e.name as executor, s.name as work_scope, ws.name as work_status
-     from 
-    work as w inner join executor as e on w.id_executor = e.id_executor
-    inner join scope_of_work as s on w.id_scope_of_work = s.id_scope_of_work
-    inner join work_status as ws on w.id_work_status = ws.id_work_status
-    where w.id_project = {project_id}
-    """)
+    select name as work, expected_date_start, expected_date_end, 
+    extract(day FROM age(w.expected_date_end, w.expected_date_start)) as days_count 
+    from work where w.id_project = {project_id}""")
     result = cursor.fetchall()
+    print('\n'*3)
+    print(f'{result = }')
+    print('\n'*3)
     return result
 
 def main():

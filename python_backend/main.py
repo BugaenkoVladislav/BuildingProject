@@ -24,15 +24,19 @@ async def get_available_material_pie_chart_html(project_id: int):
     df = pd.DataFrame(available_material, columns=[
         'Material', 'Amount', 'Unit', 'Category'])
     pie_chart = plots_drawing.draw_available_material_pie_chart(df)
+    pie_chart.write_html('pie_chart.html', auto_open=True)
     pie_chart_html = pie_chart.to_html()
+    pie_chart_html = pie_chart_html[pie_chart_html.find('</head>')+8:]
+    pie_chart_html = pie_chart_html[:-8]
     return pie_chart_html
 
 @app.get("/work_gantt_chart/{project_id}")
 async def get_work_gantt_chart(project_id: int):
     work = db.select_work(cursor, project_id)
     df = pd.DataFrame(work, columns=[
-        'Start date', 'End date', 'Executor', 'Work scope', 'Work status'])
+        'Task', 'Start', 'Finish', 'Complete'])
     gantt_chart = plots_drawing.draw_work_gantt_chart(df)
+    gantt_chart.write_html('gantt_chart.html', auto_open=True)
     gantt_chart_html = gantt_chart.to_html()
     return gantt_chart_html
 
