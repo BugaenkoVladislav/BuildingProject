@@ -18,16 +18,22 @@ connection = psycopg2.connect(
         )
 cursor = connection.cursor()
 
+def cut_html_tag(html: str) -> str:
+    html = html[html.find('</head>')+8:]
+    html = html[:-8]
+    return html
+
 @app.get("/available_material_pie_chart/{project_id}")
 async def get_available_material_pie_chart_html(project_id: int):
     available_material = db.select_available_material(cursor, project_id)
     df = pd.DataFrame(available_material, columns=[
         'Material', 'Amount', 'Unit', 'Category'])
+    print('\n'*3)
+    print(f'{df.rtypes = }')
+    print('\n'*3)
     pie_chart = plots_drawing.draw_available_material_pie_chart(df)
     pie_chart.write_html('pie_chart.html', auto_open=True)
-    pie_chart_html = pie_chart.to_html()
-    pie_chart_html = pie_chart_html[pie_chart_html.find('</head>')+8:]
-    pie_chart_html = pie_chart_html[:-8]
+    pie_chart_html = cut_html_tag(pie_chart.to_html())
     return pie_chart_html
 
 @app.get("/work_gantt_chart/{project_id}")
@@ -35,9 +41,10 @@ async def get_work_gantt_chart(project_id: int):
     work = db.select_work(cursor, project_id)
     df = pd.DataFrame(work, columns=[
         'Task', 'Start', 'Finish', 'Complete'])
+    df['Complete'] = df['Complete'].astype(float)
     gantt_chart = plots_drawing.draw_work_gantt_chart(df)
     gantt_chart.write_html('gantt_chart.html', auto_open=True)
-    gantt_chart_html = gantt_chart.to_html()
+    gantt_chart_html = cut_html_tag(gantt_chart.to_html())
     return gantt_chart_html
 
 if __name__ == "__main__":

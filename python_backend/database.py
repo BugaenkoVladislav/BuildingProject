@@ -13,9 +13,9 @@ def select_available_material(cursor:cursor, project_id: int):
 
 def select_work(cursor:cursor, project_id: int):
     cursor.execute(f"""
-    select name as work, expected_date_start, expected_date_end, 
-    extract(day FROM age(w.expected_date_end, w.expected_date_start)) as days_count 
-    from work where w.id_project = {project_id}""")
+    select name as task, expected_date_start, expected_date_end, 
+    extract(day FROM age(expected_date_end, expected_date_start)) as days_count 
+    from work where id_project = {project_id}""")
     result = cursor.fetchall()
     print('\n'*3)
     print(f'{result = }')
