@@ -23,7 +23,7 @@ def draw_available_material_pie_chart(df:pd.DataFrame):
 def draw_work_gantt_chart(df:pd.DataFrame):
     fig = ff.create_gantt(
         df,
-        colors='Plotly3',
+        colors='Blues',
         index_col='Complete',
         show_colorbar=False,
         bar_width=0.5,
